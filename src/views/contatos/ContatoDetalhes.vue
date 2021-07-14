@@ -36,7 +36,11 @@ export default {
         }
     },
     methods: {
+        // Verificando autenticação para poder excluir
         excluir(event) {
+            if (!EventBus.autenticado) {
+                return this.$router.push('/login')
+            }
             EventBus.excluirContato(this.id)
             this.$router.back()
         }
